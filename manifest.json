@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Hacker News Navigator",
+  "version": "1.0",
+  "description": "Navigate Hacker News with keyboard shortcuts",
+  "applications": {
+    "gecko": {
+      "id": "hacker-news-navigator@vincent.es"
+    }
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://news.ycombinator.com/item*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}

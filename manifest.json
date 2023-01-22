@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
   "name": "Hacker News Navigator",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "Navigate Hacker News with keyboard shortcuts",
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
       "id": "hacker-news-navigator@vincent.es"
     }

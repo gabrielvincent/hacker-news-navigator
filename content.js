@@ -4,12 +4,28 @@ const parentComments = Array.from(
   document.querySelectorAll('.comment-tree tr.athing.comtr td.ind[indent="0"]')
 ).map(td => td.closest('tr.athing.comtr'))
 
+
+function closestElementBelowViewport(elements) {
+  const viewportTop = window.scrollY;
+  let minDistance = Infinity;
+  let closestIndex = -1;
+
+  for (let i = 0; i < elements.length; i++) {
+    const rect = elements[i].getBoundingClientRect();
+    const elementTop = rect.top + window.scrollY;
+
+    if (elementTop > viewportTop && elementTop - viewportTop < minDistance) {
+      minDistance = elementTop - viewportTop;
+      closestIndex = i;
+    }
+  }
+
+  return closestIndex;
+}
+
 function updateCurrentIndex() {
-  const currentScroll = window.scrollY
-  const currentComment = parentComments.find(
-    comment => comment.offsetTop >= currentScroll
-  )
-  currentIndex = parentComments.indexOf(currentComment)
+  const closestIndex = closestElementBelowViewport(parentComments)
+  currentIndex = Math.max(0, closestIndex - 1)
 }
 
 function onScrollEnd(callback, refresh = 66) {
